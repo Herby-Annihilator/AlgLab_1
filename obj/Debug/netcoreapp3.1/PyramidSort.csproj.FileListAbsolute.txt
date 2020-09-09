@@ -1,0 +1,5 @@
+D:\Проекты  в студии\Semester_5\Algorithms\PyramidSort\obj\Debug\netcoreapp3.1\PyramidSort.csprojAssemblyReference.cache
+D:\Проекты  в студии\Semester_5\Algorithms\PyramidSort\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+D:\Проекты  в студии\Semester_5\Algorithms\PyramidSort\obj\Debug\netcoreapp3.1\App.g.cs
+D:\Проекты  в студии\Semester_5\Algorithms\PyramidSort\obj\Debug\netcoreapp3.1\PyramidSort_MarkupCompile.cache
+D:\Проекты  в студии\Semester_5\Algorithms\PyramidSort\obj\Debug\netcoreapp3.1\PyramidSort_MarkupCompile.lref

@@ -24,5 +24,10 @@ namespace PyramidSort
 		{
 			InitializeComponent();
 		}
+
+		private void buttonGenerate_Click(object sender, RoutedEventArgs e)
+		{
+			
+		}
 	}
 }

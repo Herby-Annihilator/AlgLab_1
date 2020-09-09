@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using PyramidSort.ComparisonRules;
 
 namespace PyramidSort.BinaryHeap
 {
-	public class BinaryHeap<T> where T : IComparable
+	public class BinaryHeap<T> where T : IRuleComparable
 	{
 		private T[] nodes;
 		private const int MAX_SIZE = 10000;
 		private int currentHeapSize;
+		private Rule rule;
 
 		public BinaryHeap()
 		{
@@ -38,7 +40,7 @@ namespace PyramidSort.BinaryHeap
 			int currentIndex = lastAddedNodeIndex;
 			while (parent >= 0 && currentIndex > 0)
 			{
-				if (nodes[currentIndex] > nodes[parent]) // substitute
+				if (nodes[currentIndex].CompareByRule(nodes[parent])) // substitute
 				{
 					Swap(currentIndex, parent);
 				}

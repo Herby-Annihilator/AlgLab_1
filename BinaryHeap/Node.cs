@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using TestsGeneration;
+using PyramidSort.ComparisonRules;
 
 namespace PyramidSort.BinaryHeap
 {
-	public class Node : IGeneratable, IComparable
+	public class Node : IGeneratable, IRuleComparable
 	{
 		public string FirstField { get; set; }
 		public string SecondField { get; set; }
@@ -14,16 +15,21 @@ namespace PyramidSort.BinaryHeap
 		public int FourthField { get; set; }
 		public int FifthField { get; set; }
 
-		public int CompareTo(object obj)
+		public int CompareByRule(Rule rule)
 		{
-			Node toCompare = obj as Node;
-			if (toCompare == null)
+			if (toCompare == null || rule == null)
 			{
-				throw new Exception("Invalid type in 'CompareTo()' method inside 'Node' class");
+				throw new Exception("Invalid type in 'CompareTo()' method inside 'Node' class or rule was null");
 			}
 			else
 			{
-
+				int ruleResult = rule.ApplyTheRule();
+				if (ruleResult > 0)
+					return 1;
+				else if (ruleResult < 0)
+					return -1;
+				else
+					return 0;
 			}
 		}
 

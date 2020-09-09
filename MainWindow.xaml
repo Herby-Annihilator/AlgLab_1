@@ -5,8 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PyramidSort"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="White" WindowStyle="SingleBorderWindow">
+    <Window.BorderBrush>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#7EFFFFFF" Offset="0"/>
+        </LinearGradientBrush>
+    </Window.BorderBrush>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" MinHeight="10" MaxHeight="10"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.35*" MinWidth="50"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="textBlockResult" Grid.Column="1" Grid.Row="1" Text="Here you can see the result" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="404" HorizontalAlignment="Center" Width="187" Margin="0,0,0,10" Grid.RowSpan="3" Background="#FFF1EDED" IsEnabled="False"/>
+        <Grid Grid.Row="1" Grid.Column="0" x:Name="GenerationField">
+            <Label x:Name="label" Content="Генерация записей" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <Label x:Name="label1" Content="Количество генерируемых записей" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBoxNodesCount" HorizontalAlignment="Left" Margin="226,49,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="5" MaxLines="1"/>
+            <Label x:Name="label2" HorizontalAlignment="Left" Margin="361,58,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label3" Content="шт." Margin="357,47,198,68"/>
+            <Button x:Name="buttonGenerate" Content="Сгенерировать" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Width="119" Click="buttonGenerate_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#FFCDCDCD" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" x:Name="OneFieldSort" Grid.ColumnSpan="2" Margin="0,141,207,141" Grid.RowSpan="3">
+            <Label x:Name="label_Copy" Content="Сортировка по одному полю" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <Label x:Name="label4" Content="Выберите поле, по которому будем сортировать записи" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:Name="radioButtonFirstField" Content="Поле 1 (число)" HorizontalAlignment="Left" Margin="23,67,0,0" VerticalAlignment="Top" GroupName="Fields" IsChecked="False"/>
+            <RadioButton x:Name="radioButtonSecondField" Content="Поле 2 (число)" HorizontalAlignment="Left" Margin="23,110,0,0" VerticalAlignment="Top" GroupName="Fields" IsChecked="False"/>
+            <RadioButton x:Name="radioButtonThirdField" Content="Поле 3 (строка)" HorizontalAlignment="Left" Margin="146,110,0,0" VerticalAlignment="Top" GroupName="Fields" IsChecked="False"/>
+            <RadioButton x:Name="radioButtonFourthField" Content="Поле 4 (строка)" HorizontalAlignment="Left" Margin="146,67,0,0" VerticalAlignment="Top" GroupName="Fields" IsChecked="False"/>
+            <RadioButton x:Name="radioButtonFifthField" Content="Поле 5 (строка)" HorizontalAlignment="Left" Margin="146,89,0,0" VerticalAlignment="Top" GroupName="Fields" IsChecked="False"/>
+            <Button x:Name="buttonMyOwnSort" Content="Пирамидальная" HorizontalAlignment="Left" Margin="329,110,0,0" VerticalAlignment="Top" Width="115"/>
+            <Button x:Name="buttonDefaultSort" Content="Стандартная" HorizontalAlignment="Left" Margin="468,110,0,0" VerticalAlignment="Top" Width="115"/>
+            <Label x:Name="label5" Content="Способ сортировки" HorizontalAlignment="Left" Margin="398,73,0,0" VerticalAlignment="Top"/>
 
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="0" x:Name="TwoFieldsSort" Grid.ColumnSpan="2" Margin="0,141,207,0" Grid.RowSpan="2">
+            <Label x:Name="label_Copy1" Content="Сортировка по двум полям" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+            <CheckBox x:Name="checkBoxFirstField" Content="Поле 1 (число)" HorizontalAlignment="Left" Margin="18,71,0,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="checkBoxSecondField" Content="Поле 2 (число)" HorizontalAlignment="Left" Margin="18,92,0,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="checkBoxThirdField" Content="Поле 3 (строка)" HorizontalAlignment="Left" Margin="156,113,0,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="checkBoxFourthField" Content="Поле 4 (строка)" HorizontalAlignment="Left" Margin="156,71,0,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="checkBoxFifthField" Content="Поле 5 (строка)" HorizontalAlignment="Left" Margin="156,92,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label4_Copy" Content="Выберите поля, по которым будем сортировать записи" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="buttonTwoFieldsSort" Content="Сортировать" HorizontalAlignment="Left" Margin="506,109,0,0" VerticalAlignment="Top"/>
+
+        </Grid>
     </Grid>
 </Window>

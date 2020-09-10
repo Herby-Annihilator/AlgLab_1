@@ -5,15 +5,16 @@ using PyramidSort.ComparisonRules;
 
 namespace PyramidSort.BinaryHeap
 {
-	public class BinaryHeap<T> where T : IRuleComparable
+	public class BinaryHeap<T>
 	{
 		private T[] nodes;
 		private const int MAX_SIZE = 10000;
 		private int currentHeapSize;
-		private Rule rule;
+		private IComparer<T> comparer;
 
-		public BinaryHeap()
+		public BinaryHeap(IComparer<T> comparer)
 		{
+			this.comparer = comparer;
 			currentHeapSize = 0;
 			nodes = new T[MAX_SIZE];
 		}
@@ -40,7 +41,7 @@ namespace PyramidSort.BinaryHeap
 			int currentIndex = lastAddedNodeIndex;
 			while (parent >= 0 && currentIndex > 0)
 			{
-				if (nodes[currentIndex].CompareByRule(nodes[parent])) // substitute
+				if (comparer.Compare(nodes[currentIndex], nodes[parent]) > 0)
 				{
 					Swap(currentIndex, parent);
 				}
@@ -56,6 +57,23 @@ namespace PyramidSort.BinaryHeap
 			nodes[secondIndex] = tmp;
 		}
 
+		public void Built(T[] baseCollection)
+		{
+			for (int i = 0; i < baseCollection.Length; i++)
+			{
+				Add(baseCollection[i]);
+			}
+		}
+
+		public T GetMax()
+		{
+			T toReturn = nodes[0];
+			nodes[0] = nodes[currentHeapSize - 1];
+			currentHeapSize--;
+			Heapyfi(0);
+			return toReturn;
+		}
+
 		private void Heapyfi(int startIndex)
 		{
 			int leftChildIndex = startIndex * 2 + 1;
@@ -64,11 +82,11 @@ namespace PyramidSort.BinaryHeap
 
 			while (true)
 			{
-				if (leftChildIndex < currentHeapSize && nodes[leftChildIndex] > nodes[largestNodeIndex])  // substitute
+				if (leftChildIndex < currentHeapSize && comparer.Compare(nodes[leftChildIndex], nodes[largestNodeIndex]) > 0) 
 				{
 					largestNodeIndex = leftChildIndex;
 				}
-				if (rightChildIndex < currentHeapSize && nodes[rightChildIndex] > nodes[largestNodeIndex]) //substitute
+				if (rightChildIndex < currentHeapSize && comparer.Compare(nodes[rightChildIndex], nodes[largestNodeIndex]) > 0)
 				{
 					largestNodeIndex = rightChildIndex;
 				}

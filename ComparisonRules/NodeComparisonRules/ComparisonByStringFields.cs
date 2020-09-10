@@ -16,7 +16,7 @@ namespace PyramidSort.ComparisonRules.NodeComparisonRules
 		}
 		public override int ApplyTheRule()
 		{
-			// how will we compare the strings?
+			return 1;
 		}
 	}
 }

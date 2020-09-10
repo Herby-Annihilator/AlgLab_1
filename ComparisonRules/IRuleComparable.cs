@@ -4,8 +4,8 @@ using System.Text;
 
 namespace PyramidSort.ComparisonRules
 {
-	public interface IRuleComparable
+	public interface IRuleComparable<T>
 	{
-		int CompareByRule(Rule rule);
+		int CompareByRule(T first, T second);
 	}
 }

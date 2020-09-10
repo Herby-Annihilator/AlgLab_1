@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "PyramidSort/1.0.0": {
+        "dependencies": {
+          "TestsGeneration": "1.0.0"
+        },
+        "runtime": {
+          "PyramidSort.dll": {}
+        }
+      },
+      "TestsGeneration/1.0.0": {
+        "runtime": {
+          "TestsGeneration.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PyramidSort/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TestsGeneration/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

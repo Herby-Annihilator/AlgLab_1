@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PyramidSort.BinaryHeap;
 using TestsGeneration;
+using System.IO;
 
 namespace PyramidSort
 {
@@ -33,6 +34,10 @@ namespace PyramidSort
 		{
 			try
 			{
+				if (File.Exists("input.dat"))
+				{
+					File.Delete("input.dat");
+				}
 				int countOfNodes = Convert.ToInt32(textBoxNodesCount.Text);
 				Generator<Node> generator = new Generator<Node>(countOfNodes);
 				Node[] nodes = generator.Generate();
@@ -40,6 +45,7 @@ namespace PyramidSort
 				{
 					nodes[i].WriteToFile("input.dat");
 				}
+				textBlockResult.Text = "Данные сгенерированы успешно";
 			}
 			catch(Exception ee)
 			{
@@ -71,7 +77,13 @@ namespace PyramidSort
 			{
 				nodes = sorter.SortByPyramid(nodes, new FifthFieldComparer());
 			}
+			for (int i = 0; i < nodes.Length; i++)
+			{
+				nodes[i].WriteToFile("output.dat");
+			}
 		}
+
+
 
 		private class FirstFieldComparer : IComparer<Node>
 		{
@@ -106,6 +118,41 @@ namespace PyramidSort
 			public int Compare([AllowNull] Node x, [AllowNull] Node y)
 			{
 				return x.FifthField.CompareTo(y.FifthField);
+			}
+		}
+
+		private void buttonDefaultSort_Click(object sender, RoutedEventArgs e)
+		{
+			// her znaet
+		}
+
+		private void buttonTwoFieldsSort_Click(object sender, RoutedEventArgs e)
+		{
+			Sorter<Node> sorter = new Sorter<Node>();
+			nodes = Node.ReadFromFile("input.dat");
+			if (checkBoxFirstField.IsChecked == true)
+			{
+				nodes = sorter.SortByPyramid(nodes, new FirstFieldComparer());
+			}
+			if (checkBoxSecondField.IsChecked == true)
+			{
+				nodes = sorter.SortByPyramid(nodes, new SecondFieldComparer());
+			}
+			if (checkBoxThirdField.IsChecked == true)
+			{
+				nodes = sorter.SortByPyramid(nodes, new ThirdFieldComparer());
+			}
+			if (checkBoxFourthField.IsChecked == true)
+			{
+				nodes = sorter.SortByPyramid(nodes, new FourthFieldComparer());
+			}
+			if (checkBoxFifthField.IsChecked == true)
+			{
+				nodes = sorter.SortByPyramid(nodes, new FifthFieldComparer());
+			}
+			for (int i = 0; i < nodes.Length; i++)
+			{
+				nodes[i].WriteToFile("output.dat");
 			}
 		}
 	}

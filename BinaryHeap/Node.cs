@@ -28,7 +28,7 @@ namespace PyramidSort.BinaryHeap
 
 		public void WriteToFile(string fileName)
 		{
-			StreamWriter writer = new StreamWriter(fileName);
+			StreamWriter writer = new StreamWriter(fileName, true);
 			writer.WriteLine("$***************************************\n\n");
 			writer.WriteLine("FirstField (string): " + FirstField);
 			writer.WriteLine("SecondField (string): " + SecondField);
@@ -46,13 +46,18 @@ namespace PyramidSort.BinaryHeap
 			StreamReader reader = new StreamReader(fileName);
 			while((buffer = reader.ReadLine()) != null)
 			{
-				if (buffer[0] == '$')
+				if (buffer != "" && buffer[0] == '$')
 				{
 					nodes.Add(new Node());
 					string[] words;
 					for (int i = 0; i < 5; i++)
 					{
 						buffer = reader.ReadLine();
+						if (buffer == "")
+						{
+							i--;
+							continue;
+						}
 						words = buffer.Split(new char[] { ' ' });
 						string willBeWritten = "";
 						for (int j = 2; j < words.Length; j++)
@@ -66,19 +71,19 @@ namespace PyramidSort.BinaryHeap
 						}
 						switch (i)
 						{
-							case 1:
+							case 0:
 								nodes[nodes.Count - 1].FirstField = willBeWritten;
 								break;
-							case 2:
+							case 1:
 								nodes[nodes.Count - 1].SecondField = willBeWritten;
 								break;
-							case 3:
+							case 2:
 								nodes[nodes.Count - 1].ThirdField = Convert.ToInt32(willBeWritten);
 								break;
-							case 4:
+							case 3:
 								nodes[nodes.Count - 1].FourthField = Convert.ToInt32(willBeWritten);
 								break;
-							case 5:
+							case 4:
 								nodes[nodes.Count - 1].FifthField = Convert.ToInt32(willBeWritten);
 								break;
 						}

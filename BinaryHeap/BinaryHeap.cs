@@ -76,12 +76,15 @@ namespace PyramidSort.BinaryHeap
 
 		private void Heapyfi(int startIndex)
 		{
-			int leftChildIndex = startIndex * 2 + 1;
-			int rightChildIndex = startIndex * 2 + 2;
-			int largestNodeIndex = startIndex;
+			int leftChildIndex;
+			int rightChildIndex;
+			int largestNodeIndex;
 
 			while (true)
 			{
+				leftChildIndex = startIndex * 2 + 1;
+				rightChildIndex = startIndex * 2 + 2;
+				largestNodeIndex = startIndex;
 				if (leftChildIndex < currentHeapSize && comparer.Compare(nodes[leftChildIndex], nodes[largestNodeIndex]) > 0) 
 				{
 					largestNodeIndex = leftChildIndex;

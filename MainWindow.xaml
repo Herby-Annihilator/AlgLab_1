@@ -50,7 +50,7 @@
             <RadioButton x:Name="radioButtonFourthField" Content="Поле 4 (число)" HorizontalAlignment="Left" Margin="146,67,0,0" VerticalAlignment="Top" GroupName="Fields" IsChecked="False"/>
             <RadioButton x:Name="radioButtonFifthField" Content="Поле 5 (число)" HorizontalAlignment="Left" Margin="146,89,0,0" VerticalAlignment="Top" GroupName="Fields" IsChecked="False"/>
             <Button x:Name="buttonMyOwnSort" Content="Пирамидальная" HorizontalAlignment="Left" Margin="329,110,0,0" VerticalAlignment="Top" Width="115" Click="buttonMyOwnSort_Click"/>
-            <Button x:Name="buttonDefaultSort" Content="Стандартная" HorizontalAlignment="Left" Margin="468,110,0,0" VerticalAlignment="Top" Width="115"/>
+            <Button x:Name="buttonDefaultSort" Content="Стандартная" HorizontalAlignment="Left" Margin="468,110,0,0" VerticalAlignment="Top" Width="115" Click="buttonDefaultSort_Click"/>
             <Label x:Name="label5" Content="Способ сортировки" HorizontalAlignment="Left" Margin="398,73,0,0" VerticalAlignment="Top"/>
 
         </Grid>
@@ -62,7 +62,7 @@
             <CheckBox x:Name="checkBoxFourthField" Content="Поле 4 (число)" HorizontalAlignment="Left" Margin="156,71,0,0" VerticalAlignment="Top"/>
             <CheckBox x:Name="checkBoxFifthField" Content="Поле 5 (число)" HorizontalAlignment="Left" Margin="156,92,0,0" VerticalAlignment="Top"/>
             <Label x:Name="label4_Copy" Content="Выберите поля, по которым будем сортировать записи" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
-            <Button x:Name="buttonTwoFieldsSort" Content="Сортировать" HorizontalAlignment="Left" Margin="506,109,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="buttonTwoFieldsSort" Content="Сортировать" HorizontalAlignment="Left" Margin="506,109,0,0" VerticalAlignment="Top" Click="buttonTwoFieldsSort_Click"/>
 
         </Grid>
     </Grid>

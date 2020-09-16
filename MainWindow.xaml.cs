@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,26 +58,52 @@ namespace PyramidSort
 		{
 			Sorter<Node> sorter = new Sorter<Node>();
 			nodes = Node.ReadFromFile("input.dat");
+			StreamWriter writer = new StreamWriter("output.dat");
+			writer.WriteLine("\r\n\r\nБыло\r\n");
+			writer.Close();
+			for (int i = 0; i < nodes.Length; i++)
+			{
+				nodes[i].WriteToFile("output.dat");
+			}
+			Stopwatch stopwatch = new Stopwatch();
 			if (radioButtonFirstField.IsChecked == true)
 			{
+				stopwatch.Start();
 				nodes = sorter.SortByPyramid(nodes, new FirstFieldComparer());
+				stopwatch.Stop();
+				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
 			}
 			else if (radioButtonSecondField.IsChecked == true)
 			{
+				stopwatch.Start();
 				nodes = sorter.SortByPyramid(nodes, new SecondFieldComparer());
+				stopwatch.Stop();
+				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
 			}
 			else if (radioButtonThirdField.IsChecked == true)
 			{
+				stopwatch.Start();
 				nodes = sorter.SortByPyramid(nodes, new ThirdFieldComparer());
+				stopwatch.Stop();
+				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
 			}
 			else if (radioButtonFourthField.IsChecked == true)
 			{
+				stopwatch.Start();
 				nodes = sorter.SortByPyramid(nodes, new FourthFieldComparer());
+				stopwatch.Stop();
+				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
 			}
 			else if (radioButtonFifthField.IsChecked == true)
 			{
+				stopwatch.Start();
 				nodes = sorter.SortByPyramid(nodes, new FifthFieldComparer());
+				stopwatch.Stop();
+				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
 			}
+			writer = new StreamWriter("output.dat", true);
+			writer.WriteLine("\r\n\r\nСтало\r\n");
+			writer.Close();
 			for (int i = 0; i < nodes.Length; i++)
 			{
 				nodes[i].WriteToFile("output.dat");
@@ -123,13 +150,72 @@ namespace PyramidSort
 
 		private void buttonDefaultSort_Click(object sender, RoutedEventArgs e)
 		{
-			// her znaet
+			nodes = Node.ReadFromFile("input.dat");
+			StreamWriter writer = new StreamWriter("output.dat");
+			writer.WriteLine("\r\n\r\nБыло\r\n");
+			writer.Close();
+			for (int i = 0; i < nodes.Length; i++)
+			{
+				nodes[i].WriteToFile("output.dat");
+			}
+			Stopwatch stopwatch = new Stopwatch();
+			if (radioButtonFirstField.IsChecked == true)
+			{
+				stopwatch.Start();
+				Array.Sort(nodes, new FirstFieldComparer());
+				stopwatch.Stop();
+				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+			}
+			else if (radioButtonSecondField.IsChecked == true)
+			{
+				stopwatch.Start();
+				Array.Sort(nodes, new SecondFieldComparer());
+				stopwatch.Stop();
+				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+			}
+			else if (radioButtonThirdField.IsChecked == true)
+			{
+				stopwatch.Start();
+				Array.Sort(nodes, new ThirdFieldComparer());
+				stopwatch.Stop();
+				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+			}
+			else if (radioButtonFourthField.IsChecked == true)
+			{
+				stopwatch.Start();
+				Array.Sort(nodes, new FourthFieldComparer());
+				stopwatch.Stop();
+				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+			}
+			else if (radioButtonFifthField.IsChecked == true)
+			{
+				stopwatch.Start();
+				Array.Sort(nodes, new FifthFieldComparer());
+				stopwatch.Stop();
+				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+			}
+			writer = new StreamWriter("output.dat", true);
+			writer.WriteLine("\r\n\r\nСтало\r\n");
+			writer.Close();
+			for (int i = 0; i < nodes.Length; i++)
+			{
+				nodes[i].WriteToFile("output.dat");
+			}
 		}
 
 		private void buttonTwoFieldsSort_Click(object sender, RoutedEventArgs e)
 		{
 			Sorter<Node> sorter = new Sorter<Node>();
 			nodes = Node.ReadFromFile("input.dat");
+			StreamWriter writer = new StreamWriter("output.dat");
+			writer.WriteLine("\r\n\r\nБыло\r\n");
+			writer.Close();
+			for (int i = 0; i < nodes.Length; i++)
+			{
+				nodes[i].WriteToFile("output.dat");
+			}
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
 			if (checkBoxFirstField.IsChecked == true)
 			{
 				nodes = sorter.SortByPyramid(nodes, new FirstFieldComparer());
@@ -150,6 +236,11 @@ namespace PyramidSort
 			{
 				nodes = sorter.SortByPyramid(nodes, new FifthFieldComparer());
 			}
+			stopwatch.Stop();
+			textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+			writer = new StreamWriter("output.dat", true);
+			writer.WriteLine("\r\n\r\nСтало\r\n");
+			writer.Close();
 			for (int i = 0; i < nodes.Length; i++)
 			{
 				nodes[i].WriteToFile("output.dat");

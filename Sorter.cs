@@ -11,10 +11,7 @@ namespace PyramidSort
 		{
 			BinaryHeap<T> heap = new BinaryHeap<T>(comparer);
 			heap.Built(sortingArray);
-			for (int i = 0; i < sortingArray.Length; i++)
-			{
-				sortingArray[i] = heap.GetMax();
-			}
+			heap.Sort();
 			return sortingArray;
 		}
 	}

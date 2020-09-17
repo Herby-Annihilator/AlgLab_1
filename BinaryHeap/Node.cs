@@ -19,9 +19,9 @@ namespace PyramidSort.BinaryHeap
 		public void Randomize()
 		{
 			Random random = new Random();
-			ThirdField = random.Next();
-			FourthField = random.Next();
-			FifthField = random.Next();
+			ThirdField = random.Next(-50, 100);
+			FourthField = random.Next(-50, 100);
+			FifthField = random.Next(-50, 100);
 			FirstField = StringExtension.CreateRandomString(FirstField, random.Next(1, GlobalConstants.STRING_MAX_LENGHT));
 			SecondField = StringExtension.CreateRandomString(FirstField, random.Next(1, GlobalConstants.STRING_MAX_LENGHT));
 		}

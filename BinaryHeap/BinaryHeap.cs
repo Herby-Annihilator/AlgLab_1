@@ -15,7 +15,6 @@ namespace PyramidSort.BinaryHeap
 		{
 			this.comparer = comparer;
 			currentHeapSize = 0;
-			nodes = new T[MAX_SIZE];
 		}
 
 		public void Add(T nodeToAdd)
@@ -58,9 +57,11 @@ namespace PyramidSort.BinaryHeap
 
 		public void Built(T[] baseCollection)
 		{
-			for (int i = 0; i < baseCollection.Length; i++)
+			nodes = baseCollection;
+			currentHeapSize = nodes.Length;
+			for (int i = currentHeapSize / 2 - 1; i >= 0; i--)
 			{
-				Add(baseCollection[i]);
+				Heapyfi(i);
 			}
 		}
 
@@ -71,6 +72,18 @@ namespace PyramidSort.BinaryHeap
 			currentHeapSize--;
 			Heapyfi(0);
 			return toReturn;
+		}
+
+		public void Sort()
+		{
+			int size = currentHeapSize;
+			for (int i = 1; i < size; i++)
+			{
+				Swap(0, size - i);
+				currentHeapSize--;
+				Heapyfi(0);
+			}
+			currentHeapSize = size;
 		}
 
 		private void Heapyfi(int startIndex)

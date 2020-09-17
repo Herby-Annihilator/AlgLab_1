@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using PyramidSort.BinaryHeap;
 using TestsGeneration;
 using System.IO;
+using PyramidSort.BinaryHeap.Comparers;
 
 namespace PyramidSort
 {
@@ -66,85 +67,42 @@ namespace PyramidSort
 				nodes[i].WriteToFile("output.dat");
 			}
 			Stopwatch stopwatch = new Stopwatch();
+
+			BaseComparerDecorator baseComparerDecorator = new BaseComparerDecorator(new BaseComparer());
+
 			if (radioButtonFirstField.IsChecked == true)
 			{
-				stopwatch.Start();
-				nodes = sorter.SortByPyramid(nodes, new FirstFieldComparer());
-				stopwatch.Stop();
-				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+				baseComparerDecorator = new FirstFieldComparerDecorator(baseComparerDecorator);
 			}
 			else if (radioButtonSecondField.IsChecked == true)
 			{
-				stopwatch.Start();
-				nodes = sorter.SortByPyramid(nodes, new SecondFieldComparer());
-				stopwatch.Stop();
-				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+				baseComparerDecorator = new SecondFieldComparerDecorator(baseComparerDecorator);
 			}
 			else if (radioButtonThirdField.IsChecked == true)
 			{
-				stopwatch.Start();
-				nodes = sorter.SortByPyramid(nodes, new ThirdFieldComparer());
-				stopwatch.Stop();
-				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+				baseComparerDecorator = new ThirdComparerDecorator(baseComparerDecorator);
 			}
 			else if (radioButtonFourthField.IsChecked == true)
 			{
-				stopwatch.Start();
-				nodes = sorter.SortByPyramid(nodes, new FourthFieldComparer());
-				stopwatch.Stop();
-				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+				baseComparerDecorator = new FourthFieldDecorator(baseComparerDecorator);
 			}
 			else if (radioButtonFifthField.IsChecked == true)
 			{
-				stopwatch.Start();
-				nodes = sorter.SortByPyramid(nodes, new FifthFieldComparer());
-				stopwatch.Stop();
-				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+				baseComparerDecorator = new FifthComparerDecorator(baseComparerDecorator);
 			}
+
+
+			stopwatch.Start();
+			nodes = sorter.SortByPyramid(nodes, baseComparerDecorator);
+			stopwatch.Stop();
+			textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+
 			writer = new StreamWriter("output.dat", true);
 			writer.WriteLine("\r\n\r\nСтало\r\n");
 			writer.Close();
 			for (int i = 0; i < nodes.Length; i++)
 			{
 				nodes[i].WriteToFile("output.dat");
-			}
-		}
-
-
-
-		private class FirstFieldComparer : IComparer<Node>
-		{
-			public int Compare([AllowNull] Node x, [AllowNull] Node y)
-			{
-				return x.FirstField.CompareTo(y.FirstField);
-			}
-		}
-		private class SecondFieldComparer : IComparer<Node>
-		{
-			public int Compare([AllowNull] Node x, [AllowNull] Node y)
-			{
-				return x.SecondField.CompareTo(y.SecondField);
-			}
-		}
-		private class ThirdFieldComparer : IComparer<Node>
-		{
-			public int Compare([AllowNull] Node x, [AllowNull] Node y)
-			{
-				return x.ThirdField.CompareTo(y.ThirdField);
-			}
-		}
-		private class FourthFieldComparer : IComparer<Node>
-		{
-			public int Compare([AllowNull] Node x, [AllowNull] Node y)
-			{
-				return x.FourthField.CompareTo(y.FourthField);
-			}
-		}
-		private class FifthFieldComparer : IComparer<Node>
-		{
-			public int Compare([AllowNull] Node x, [AllowNull] Node y)
-			{
-				return x.FifthField.CompareTo(y.FifthField);
 			}
 		}
 
@@ -159,41 +117,34 @@ namespace PyramidSort
 				nodes[i].WriteToFile("output.dat");
 			}
 			Stopwatch stopwatch = new Stopwatch();
+			BaseComparerDecorator baseComparerDecorator = new BaseComparerDecorator(new BaseComparer());
+
 			if (radioButtonFirstField.IsChecked == true)
 			{
-				stopwatch.Start();
-				Array.Sort(nodes, new FirstFieldComparer());
-				stopwatch.Stop();
-				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+				baseComparerDecorator = new FirstFieldComparerDecorator(baseComparerDecorator);
 			}
 			else if (radioButtonSecondField.IsChecked == true)
 			{
-				stopwatch.Start();
-				Array.Sort(nodes, new SecondFieldComparer());
-				stopwatch.Stop();
-				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+				baseComparerDecorator = new SecondFieldComparerDecorator(baseComparerDecorator);
 			}
 			else if (radioButtonThirdField.IsChecked == true)
 			{
-				stopwatch.Start();
-				Array.Sort(nodes, new ThirdFieldComparer());
-				stopwatch.Stop();
-				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+				baseComparerDecorator = new ThirdComparerDecorator(baseComparerDecorator);
 			}
 			else if (radioButtonFourthField.IsChecked == true)
 			{
-				stopwatch.Start();
-				Array.Sort(nodes, new FourthFieldComparer());
-				stopwatch.Stop();
-				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+				baseComparerDecorator = new FourthFieldDecorator(baseComparerDecorator);
 			}
 			else if (radioButtonFifthField.IsChecked == true)
 			{
-				stopwatch.Start();
-				Array.Sort(nodes, new FifthFieldComparer());
-				stopwatch.Stop();
-				textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+				baseComparerDecorator = new FifthComparerDecorator(baseComparerDecorator);
 			}
+
+			stopwatch.Start();
+			Array.Sort(nodes, baseComparerDecorator);
+			stopwatch.Stop();
+			textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
+
 			writer = new StreamWriter("output.dat", true);
 			writer.WriteLine("\r\n\r\nСтало\r\n");
 			writer.Close();
@@ -215,27 +166,31 @@ namespace PyramidSort
 				nodes[i].WriteToFile("output.dat");
 			}
 			Stopwatch stopwatch = new Stopwatch();
-			stopwatch.Start();
+			BaseComparerDecorator baseComparerDecorator = new BaseComparerDecorator(new BaseComparer());
+
 			if (checkBoxFirstField.IsChecked == true)
 			{
-				nodes = sorter.SortByPyramid(nodes, new FirstFieldComparer());
+				baseComparerDecorator = new FirstFieldComparerDecorator(baseComparerDecorator);
 			}
 			if (checkBoxSecondField.IsChecked == true)
 			{
-				nodes = sorter.SortByPyramid(nodes, new SecondFieldComparer());
+				baseComparerDecorator = new SecondFieldComparerDecorator(baseComparerDecorator);
 			}
 			if (checkBoxThirdField.IsChecked == true)
 			{
-				nodes = sorter.SortByPyramid(nodes, new ThirdFieldComparer());
+				baseComparerDecorator = new ThirdComparerDecorator(baseComparerDecorator);
 			}
 			if (checkBoxFourthField.IsChecked == true)
 			{
-				nodes = sorter.SortByPyramid(nodes, new FourthFieldComparer());
+				baseComparerDecorator = new FourthFieldDecorator(baseComparerDecorator);
 			}
 			if (checkBoxFifthField.IsChecked == true)
 			{
-				nodes = sorter.SortByPyramid(nodes, new FifthFieldComparer());
+				baseComparerDecorator = new FifthComparerDecorator(baseComparerDecorator);
 			}
+
+			stopwatch.Start();
+			nodes = sorter.SortByPyramid(nodes, baseComparerDecorator);
 			stopwatch.Stop();
 			textBlockResult.Text = "Затраченное время = " + stopwatch.ElapsedMilliseconds.ToString() + " мс";
 			writer = new StreamWriter("output.dat", true);
